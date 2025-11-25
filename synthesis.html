@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 8th Road Map </title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="icon" type="image/x-icon" href="8th Road Logo.jpg">
+</head>
+<body>
+
+    <header>
+
+        <div class="hamburger" onclick="toggleMenu()">
+            =
+      	  </div>
+		  
+		<a id="loginBtn" href="login.html" class="login-button">Login</a>
+    </header>
+
+    <nav id="sideMenu" class="side-menu">
+        <div class="logo"><img src="logo.png"></div>
+        <div class="close-btn" onclick="toggleMenu()">x</div>
+
+        <a href="index.html">Home</a>
+        <a href="synthesis.html">Synthesis</a>
+        <a href="aboutus.html">About Us</a>
+        <a href="feedback.html">Feedback</a>
+		
+		<h4>Contact Us</h4>
+<h5>For questions or concerns about our project, you may reach us through:</h5>
+<h5>Gmail: throadmap@gmail.com</h5>
+<h5>Contact Number: 0918 343 8238</h5>
+    </nav>
+
+	<div id="content">
+    <section class="hero">
+        <h1> 8th Road Map</h1>
+        <p>Advancing Urban Development through Research: Establishing Innovative Solutions for Sustainable Cities</p>
+    </section>
+	
+	<section class="content">
+	
+	<div id="btn">
+	<button id="ttsBtn"> Speak </button>
+	</div>
+	
+	
+	<section class="section" id="synthesis">
+	
+	<h2 style="font-size:23px;"> Strengthening Sustainable Cities and Communities Through Research: A Synthesis of Day 1 of the 8th Research Congress </h3>
+	
+	<p>
+	
+		The 8th Research Congress held at the University of Makati on October 22, 2025, focused on how research can help cities grow in a more organized and sustainable way. The theme, "Advancing Urban Development Through Research: Establishing Innovative Solutions for Sustainable Cities," made it clear that the goal was to connect research with real issues happening in urban areas today. Even if the speakers touched on different Sustainable Development Goals, the main spotlight stayed on SDG 11, which is about creating safer and more sustainable cities. As a student listening to the talks, I noticed that the presenters approached the topic from different angles, yet all of them pointed back to one idea, cities need research to survive and improve.
+		
+	</p>
+	
+	<p>
+	The congress started with Sir Bambang Brodjonegoro from the Asian Development Bank Institute, who discussed how research can guide city planning. He emphasized that without research, city development becomes risky and less effective. Following him, Engr. Merlina G. Panganiban also highlighted the importance of research in guiding urban development, particularly how government and development policies can be strengthened when they are backed by solid studies.
+	</p>
+	
+	<p>
+	Next, Dr. Don Eliseo Prisno explained how rapid urbanization is affecting cities. He shared that as cities grow, transportation, health systems, housing, and other services face increasing pressure. This linked well with Prof. Shuaibu Saidu Musa from Chulalongkorn University, who talked about innovative healthcare approaches related to SDG 3. He explained that improving health systems through research and innovation is essential to help cities handle growing populations.
+	</p>
+	
+	<p>
+	After that, Ms. Gabrielle Iglesias shared insights on making cities more climate-resilient. She showed how research can help cities adapt to environmental changes and prepare for challenges brought by climate change. Then, Prof. Anton Heinrich L. Rennesland spoke about fairness in mobility and spatial justice, demonstrating that cities must not only grow but also ensure that all people have equal access to resources and opportunities.
+	</p>
+	
+	<p>
+	The final presentation was from Dr. Joelash R. Honra, who discussed "Educating for Sustainable Cities through Design Thinking." He said that schools usually train students just to deal with problems instead of changing the systems that create them. His idea of using design thinking in all courses stood out because it encourages students to think creatively and solve problems instead of memorizing information. This tied together the ideas from previous speakers, showing how education, research, and urban development are closely connected.
+	</p>
+	
+	<p>
+	Throughout the event, several recommendations are raised. One strong recommendation was that research should not stay inside the classrooms or journals, it needs to be turned into actual solutions that people can use. Another suggestion was to shift the goal of education from simple survival skills to helping students become changemakers. The idea of adding design thinking to every discipline felt realistic and helpful because it gives students a way to create practical solutions, especially for the challenges faced in growing cities. The speakers also encouraged more cooperation between schools, local governments, experts, and communities.
+	</p>
+	
+	<p>
+    In conclusion, the 8th Research Congress showed how different fields like health, education, environment, and planning are working together in improving cities. The speakers demonstrated that research becomes more meaningful when it is connected to real issues and when students and professionals use it to improve communities. After hearing all the presentations, it became clear that sustainable development isn't just a big concept, it's something that depends on everyday decisions backed by good research. Events like this remind students like me that we also have a role in helping build better and more sustainable cities in the future.
+	</p>
+	</section>
+	
+	</section>
+	
+	
+    <footer>
+        <p> Copyright 2025 8th Road Map | Gmail: throadmap@gmail.com | Contact Number: 0918 343 8238</p>
+    </footer>
+
+	</div>
+	<button id="backToTop" title="Go to top">Back to Top</button>
+	<script>
+    const loginBtn = document.getElementById("loginBtn");
+
+    if(localStorage.getItem("loggedIn") === "true") {
+        loginBtn.textContent = "Logout";
+        loginBtn.href = "#";
+
+        loginBtn.addEventListener("click", function(){
+            localStorage.removeItem("loggedIn");
+            alert("You have logged out.");
+            location.reload();
+        });
+    }
+	
+	let isSpeaking = false;
+let utterance = null;
+
+document.getElementById("ttsBtn").addEventListener("click", function () {
+    if (isSpeaking) {
+        speechSynthesis.cancel();
+        isSpeaking = false;
+        this.textContent = "Speak";
+        return;
+    }
+    const textToRead = document.getElementById("content").innerText; 
+    utterance = new SpeechSynthesisUtterance(textToRead);
+
+
+    utterance.rate = 1; 
+    utterance.pitch = 1;
+
+    speechSynthesis.speak(utterance);
+    isSpeaking = true;
+    this.textContent = "Stop";
+
+    utterance.onend = () => {
+        isSpeaking = false;
+        document.getElementById("ttsBtn").textContent = "Speak";
+    };
+});
+
+function toggleMenu() {
+            const menu = document.getElementById("sideMenu");
+            menu.classList.toggle("open");
+        }
+		
+	const backToTopBtn = document.getElementById("backToTop");
+
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 250) { 
+            backToTopBtn.classList.add("show");
+        } else {
+            backToTopBtn.classList.remove("show");
+        }
+    });
+
+    backToTopBtn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+	</script>
+
+</body>
+</html>

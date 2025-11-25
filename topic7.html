@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 8th Road Map </title>
+	<link rel="icon" type="image/x-icon" href="8th Road Logo.jpg">
+    <link rel="stylesheet" type="text/css" href="style.css">
+	<style>
+	.content .widget img {
+	height: 250px;
+	width: 250px;
+	transition: transform 0.5s ease;
+	border-radius: 10px;
+}	
+	#widget {
+	display: flex;
+	border-radius: 20px;
+	margin: 60px 100px 60px 100px;
+	justify-content: space-around;
+}
+	.widget a img:hover {
+	transform: scale(1.05) translateY(-5px);
+	border-radius: 10px;
+}	
+	.topic {
+	padding: 150px 150px 10px 150px;
+	background-color: white;
+}	
+	</style>
+</head>
+<body>
+
+     <header>
+
+        <div class="hamburger" onclick="toggleMenu()">
+            =
+      	  </div>
+		  
+		<a id="loginBtn" href="login.html" class="login-button">Login</a>
+    </header>
+
+    <nav id="sideMenu" class="side-menu">
+        <div class="logo"><img src="logo.png"></div>
+        <div class="close-btn" onclick="toggleMenu()">x</div>
+
+        <a href="index.html">Home</a>
+        <a href="synthesis.html">Synthesis</a>
+        <a href="aboutus.html">About Us</a>
+        <a href="feedback.html">Feedback</a>
+		
+		<h4>Contact Us</h4>
+<h5>For questions or concerns about our project, you may reach us through:</h5>
+<h5>Gmail: throadmap@gmail.com</h5>
+<h5>Contact Number: 0918 343 8238</h5>
+
+    </nav>
+
+	<div id="content">
+    <section class="hero">
+        <h1> 8th Road Map</h1>
+        <p>Advancing Urban Development through Research: Establishing Innovative Solutions for Sustainable Cities</p>
+    </section>
+	
+	<section class="content">
+
+	<div id="btn">
+	<button id="ttsBtn"> Speak </button>
+	</div>
+
+
+	<section class="content" id="widget">
+	
+	
+	<div class="widget">
+	<a href="topic1.html#topic1"><img src="topic1.png"></a>
+	</div>
+	
+	<div class="widget">
+	<a href="topic2.html#topic2"><img src="topic2.png"></a>
+	</div>
+	
+	<div class="widget">
+	<a href="topic3.html#topic3"><img src="topic3.png"></a>
+	</div>
+	
+	<div class="widget">
+	<a href="topic4.html#topic4"><img src="topic4.png"></a>
+	</div>
+	</section>
+	
+	<section class="content" id="widget">
+	
+	<div class="widget">
+	<a href="topic5.html#topic5"><img src="topic5.png"></a>
+	</div>
+	
+	<div class="widget">
+	<a href="topic6.html#topic6"><img src="topic6.png"></a>
+	</div>
+	
+	<div class="widget">
+	<a href="topic7.html#topic7"><img src="topic7.png"></a>
+	</div>
+	
+	</section>
+	
+	</section>
+	
+	<section class="content topic" id="topic7">
+	
+	<h2> Educating for Sustainable Cities Through Design Thinking </h2>
+	<h3>by Dr. Joelash Honra</h3>
+	
+	<p> Dr. Joelash R. Honra, an Associate Professor at the National University, Philippines, delivered a compelling presentation on the role of education in building sustainable cities. His study emphasized that schools have a responsibility not just to teach academic knowledge, but to help students develop the skills needed to address real-life problems in their communities. 
+	</p>
+	
+	<p>He highlighted that competencies such as problem-solving, teamwork, empathy, and creative thinking are essential for preparing young people to become active contributors to society. By allowing students to engage in real projects and community-based activities, schools can equip them with the ability to tackle complex issues and understand the impact of their work on the world around them.
+	</p>
+	
+	<p>
+	‎Dr. Honra also introduced the concept of Design Thinking as a framework that can transform how students approach challenges. He explained that education plays a crucial role in nurturing a person’s mindset, it shapes their ability to think critically, innovate responsibly, and collaborate for social good. Developing sustainable thinkers, he argued, is the foundation of creating sustainable cities. When students are trained to be empathetic, creative, and solution-oriented, they are more likely to propose meaningful, human-centered solutions to urban problems.
+	</p>
+	
+	</section>
+	
+	
+	
+    <footer>
+        <p> Copyright 2025 8th Road Map | Draft Website</p>
+    </footer>
+	
+	</div>
+	<button id="backToTop" title="Go to top">Back to Top</button>
+
+	<script>
+    const loginBtn = document.getElementById("loginBtn");
+
+    if(localStorage.getItem("loggedIn") === "true") {
+        loginBtn.textContent = "Logout";
+        loginBtn.href = "#";
+
+        loginBtn.addEventListener("click", function(){
+            localStorage.removeItem("loggedIn");
+            alert("You have logged out.");
+            location.reload();
+        });
+    }
+	
+		let isSpeaking = false;
+let utterance = null;
+
+document.getElementById("ttsBtn").addEventListener("click", function () {
+    if (isSpeaking) {
+        speechSynthesis.cancel();
+        isSpeaking = false;
+        this.textContent = "Speak";
+        return;
+    }
+    const textToRead = document.getElementById("content").innerText; 
+    utterance = new SpeechSynthesisUtterance(textToRead);
+
+
+    utterance.rate = 1; 
+    utterance.pitch = 1;
+
+    speechSynthesis.speak(utterance);
+    isSpeaking = true;
+    this.textContent = "Stop";
+
+    utterance.onend = () => {
+        isSpeaking = false;
+        document.getElementById("ttsBtn").textContent = "Speak";
+    };
+});
+
+ function toggleMenu() {
+            const menu = document.getElementById("sideMenu");
+            menu.classList.toggle("open");
+        }
+		
+		const backToTopBtn = document.getElementById("backToTop");
+
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 250) { 
+            backToTopBtn.classList.add("show");
+        } else {
+            backToTopBtn.classList.remove("show");
+        }
+    });
+
+    backToTopBtn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+	</script>
+
+</body>
+</html>
