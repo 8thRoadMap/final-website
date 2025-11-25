@@ -231,4 +231,8 @@ footer {
 #backToTop.show {
     display: block;
     opacity: 1;
+
+}
+.topic p{
+	text-align: justify
 }
